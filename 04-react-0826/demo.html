@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li id="nav-icon"><a href="#"><span>漢堡icon</span></a></li>
+            <li><a href="#">MENU1</a></li>
+            <li><a href="#">MENU2</a></li>
+            <li><a href="#">MENU3</a></li>
+        </ul>
+    </nav>
+    <script src="./nav.js"></script>
+    <div id="root"></div>
+    <script type="text/babel">
+        function App() {
+            return (
+                <nav>
+                    <ul>
+                        <li id="nav-icon" onClick={() => {
+                            console.log('漢堡icon被點選了');
+                        }}><a href="#"><span>漢堡icon</span></a></li>
+                        <li><a href="#">MENU1</a></li>
+                        <li><a href="#">MENU2</a></li>
+                        <li><a href="#">MENU3</a></li>
+                    </ul>
+                </nav>
+            )
+        }
+
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+    </script>
+</body>
+
+</html>

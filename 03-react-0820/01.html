@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+
+<body>
+    <!-- 步驟二：載入root元素 -->
+    <div id="root"></div>
+
+    <!-- 使用JSX，type類型為 "text/babel" -->
+    <script type="text/babel">
+
+        function GetImg(props) {
+            // 元件結束後必須有回傳值
+            return (
+                <img title={props.title} src={props.imgUrl} alt="" style={
+                    {
+                        width: props.width,
+                        marginBottom: '20px',
+                        border:props.border,
+                    }
+                } />
+            )
+        }
+
+        // 步驟三：建立 React 元件
+        // 元件自首要大寫，而且有回傳值return
+        function App() {
+            // JSX寫法
+            return (
+                <div>
+                    <h2>呼叫圖片元件</h2>
+                    {/*呼叫元件:擇其一*/}
+                    {/*<GetImg></GetImg>*/}
+                    {/*使用自訂屬性名稱，傳值給元件*/}
+                    {/*元件使用props接收*/}
+                    <GetImg imgUrl="../react0814/pic6.jpg" title="圖1" width="300px" border="5px dashed black "/>
+                    <GetImg imgUrl="../react0814/pic5.jpg" title="圖2" width="150px" border="1px solid black "/>
+
+                    {/*沒有元件化的圖片，有N張圖，就要重工N次*/}
+                    {/*<img src="../react0814/pic5.jpg" alt="" style={
+                        {
+                            width: '300px',
+                            border: '1px solid black',
+                            marginBottom: '20px',
+                        }
+                    } />*/}
+                </div>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+
+    </script>
+</body>
+
+</html>

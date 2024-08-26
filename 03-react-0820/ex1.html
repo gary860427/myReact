@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>環境安裝</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+    <script src="./javascripts/vendor.js"></script>
+
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- 使用JSX，type類型為 "text/babel" -->
+    <script type="text/babel">
+        //建立卡片元件
+        function Card(props) {
+            // 有沒有年齡資料
+            let msgAge = '';
+            if (props.age == "") {
+                msgAge = '沒有提供年齡';
+            } else {
+                msgAge = props.age + '歲';
+            }
+
+            // 檢查有無按鈕名稱
+            let msgBtnName = '';
+            if (props.btnName == "") {
+                msgBtnName = '未命名';
+            } else {
+                msgBtnName = props.btnName;
+            }
+
+            return (
+                <div className="card" style={{ width: '18rem', margin: '20px' }}>
+                    <img src={props.imgUrl} className="card-img-top" alt="..." />
+                    <div className="card-body">
+                        <h5 className="card-title">{props.name}</h5>
+                        <p className="card-text">年齡:{msgAge}歲</p>
+                        <a href="#" className="btn btn-primary">{msgBtnName}</a>
+                    </div>
+                </div>
+            )
+
+        }
+
+        // 步驟三：建立 React 元件
+        // 元件自首要大寫，而且有回傳值return
+        function App() {
+            return (
+                <>
+                    <Card imgUrl="../react0814/pic6.jpg" name="卡片1" age="20" btnName="" />
+                    <Card imgUrl="../react0814/pic5.jpg" name="卡片1" age="25" btnName="" />
+                </>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+
+    </script>
+    <link rel="stylesheet" href="./stylesheets/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</body>
+
+</html>
