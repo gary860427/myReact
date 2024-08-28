@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+
+    <div id="root"></div>
+    <!-- 步驟二：載入root元素 -->
+    <!-- 使用JSX，type類型為 "text/babel" -->
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        function App() {
+            const [count, setCount] = useState(0);
+            // 頁面渲染後會立即執行(初始化)
+            // 只要畫面重新被渲染一次，也會被執行
+            useEffect(() => {
+                console.log(2)
+                // 更新頁面標題
+                document.title = `按鈕次數:${count}`;
+            });
+
+            // 使用空陣列，只會執行一次
+            // 初始化會被執行後不會被執行
+            useEffect(() => {
+                console.log(3)
+            }, []);
+
+            // 使用「有內容或變數」的陣列
+            // 初始化會被執行
+            // 當陣列的內容被改變時，也會執行
+            useEffect(() => {
+                console.log(4)
+            }, [num]);
+
+            return (
+                <div>
+                    {console.log(1)}
+                    <p>按了多少次按鈕:{count}次</p>
+                    <button onClick={() => {
+                        setCount(count + 1)
+                    }}>Click</button>
+                </div>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+
+    </script>
+    <link rel="stylesheet" href="../stylesheets/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</body>
+
+</html>

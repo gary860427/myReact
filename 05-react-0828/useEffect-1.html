@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- <script type="text/babel" src="./demo.js "></script> -->
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- 步驟二：載入root元素 -->
+    <!-- 使用JSX，type類型為 "text/babel" -->
+    <script type="text/babel">
+        const { useEffect } = React;
+
+
+        function App() {
+
+            // useEffect方法被觸發的時機點是在被渲染之後
+            useEffect(() => {
+                console.log(2);
+                document.title = "useEffect更改了title";
+
+                // 監聽事件
+                const btn2 = document.getElementById('btn2');
+                btn2.addEventListener('click', () => {
+                    console.log(3);
+                    document.title = "按鈕2更新title";
+                });
+            });
+            return (
+                <>
+                    <h1>Hello React!</h1>
+                    <button onClick={() => {
+                        console.log(1);
+                        document.title = "按鈕更改title";
+                    }}>更新title</button>
+                    <button id="btn2" onClick={editTitle}>按鈕2</button>
+                </>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+
+    </script>
+
+    <link rel="stylesheet" href="../stylesheets/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</body>
+
+</html>
