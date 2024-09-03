@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 燈箱效果css -->
+    <link rel="stylesheet" href="./jQuery/lightbox/css/lightbox.css">
+    <style>
+        img {
+            height: 300px;
+            width: 400px;
+        }
+
+        .box {
+            height: 300px;
+            width: 400px;
+            position: relative;
+        }
+
+        /* 輪播導覽列 */
+        #nav {
+            right: 20px;
+            bottom: 20px;
+            position: absolute;
+            z-index: 99;
+        }
+
+        #nav a{
+            color: transparent;
+            text-decoration: none;
+            font-size: 0;
+            margin-left: 20px;
+            border: 1px solid #fff;
+            display: block;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            margin-bottom: 10px;
+            border-radius: 50%;
+        }
+
+        /* 作用中的數字底色會改變 */
+        #nav a.activeSlide{
+            background-color: #d3d392;
+        }
+    </style>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 查看react, reactDOM成員
+        const { useEffect } = React;
+
+        // jQuery環境簡寫
+
+
+        // 步驟三：建立 React 元件
+        // 元件自首要大寫，而且有回傳值return
+        function App() {
+
+            useEffect(() => {
+                // 撰寫jQuery環境正常寫法
+                // $(document).ready(function(){});
+                $(function () {
+                    $('#imgCycle').after('<div id="nav"></div>').cycle(
+                        {
+                            fx: 'fade', //輪播方式
+                            timeout: 500, //輪播速度
+                            delay: -2000, //第一次第一張圖停留時間
+                            pager: '#nav',//執行已建立好的CSS樣式
+                        }
+                    );
+                });
+            }, []);
+
+            return (
+                <div>
+                    <h1>自動輪播+輪播紐</h1>
+                    <div class="box">
+                        <div id="imgCycle">
+                            <img src="../react0814/pic5.jpg" alt="" />
+                            <img src="../react0814/pic6.jpg" alt="" />
+                            <img src="../react0814/pic2.jpg" alt="" />
+                            <img src="../react0814/pic3.jpg" alt="" />
+                            <img src="../react0814/pic4.jpg" alt="" />
+                        </div>
+
+                        {/* <nav>輪播導覽列位置</nav>*/}
+                    </div>
+                </div>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+
+    </script>
+    <!--  -->
+    <script src="./jQuery/js/jquery-1.11.3.min.js"></script>
+    <!-- 輪播主程式js -->
+    <script src="./jQuery/js/jquery.cycle.all.js"></script>
+</body>
+
+</html>
