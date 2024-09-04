@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper {
+            width: 960px;
+            margin: 50px auto;
+        }
+
+        p {
+            text-align: justify;
+            line-height: 1.5;
+        }
+
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .ttpShow {
+            border: 3px solid #ccc;
+            padding: 10px;
+            text-align: left;
+            background-color: #fff;
+            position: absolute;
+            z-index: 99;
+            display: none;
+        }
+    </style>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 查看react, reactDOM成員
+        const { useEffect } = React;
+
+        // jQuery環境簡寫
+
+
+        // 步驟三：建立 React 元件
+        // 元件自首要大寫，而且有回傳值return
+        function App() {
+
+            useEffect(() => {
+                // 撰寫jQuery環境正常寫法
+                // $(document).ready(function(){});
+                $(function () {
+
+                    // 滑鼠事件
+                    // 移入 => mouseover()
+                    // 移動 => mousemove()
+                    // 移出 => mouseout()
+
+                    // 座標X => pageX
+                    // 座標Y => pageY
+
+                    // 淡入 => fadeIn()
+                    // 淡出 => fadeOut()
+                    // 速度 => 可以使用秒數或著參數(slow, normal, fast)
+                    // 傳回被找到的資訊 => has()
+
+                    $('a:has(.ttpShow)').mouseover(function (e) {
+                        // 滑鼠碰到超連結有ttpShow時
+                        $('.body').append('<div id="ttpPanel">' + $(this).children('.ttpShow').html() + '</div>');
+                        $('#ttpPanel').css({ top: (e.pageY + 10) + 'px', left: (e.pageX + 10) + 'px' }).fadeIn('fast');
+                    }).mousemove(function (e) {
+                        // 滑鼠碰到超連結移動時
+                        $('#ttpPanel').css({ top: (e.pageY + 10) + 'px', left: (e.pageX + 10) + 'px' }).fadeIn('fast');
+                    }).mouseout(function (e) {
+                        // 滑鼠離開超連結時
+                        $('#ttpPanel').remove();
+                    });
+
+                    // $('a:has(.ttpShow)').mousemove(function (e) {
+                    //     // 滑鼠碰到超連結移動時
+                    //     $('.ttpShow').css({
+                    //         top: (e.pageY) + 'px',
+                    //         left: (e.pageX) + 'px'
+                    //     }).fadeIn('fast');
+                    // });
+
+                    // $('a:has(.ttpShow)').mouseout(function (e) {
+                    //     // 滑鼠離開超連結時
+                    //     $('.ttpShow').fadeOut('fast');
+                    // });
+
+                });
+            }, []);
+
+            return (
+                <div id="wrapper">
+                    <h1>toolTip效果，使用滑鼠方法</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <a href="#">Nulla <span className="ttpShow">Nulla 內容說明</span></a> laboriosam alias veritatis architecto illum, accusamus eos vel odit repellat voluptate odio deleniti quibusdam cupiditate modi repellendus obcaecati explicabo amet quia velit! Est nisi exercitationem odio molestias magni nostrum quis at sit, veniam ad excepturi autem officia labore dolores? Natus vero dolores laboriosam voluptatum, accusamus repudiandae? Provident mollitia exercitationem ea corporis asperiores. Quo nemo, necessitatibus cupiditate hic perferendis ab eligendi, facere minus temporibus maiores quibusdam consectetur. Quas, alias nihil? Nam voluptatem aspernatur alias quod sint! Ex quis officia id corporis eveniet itaque reprehenderit. Debitis placeat voluptatem voluptas soluta fugit dolores a sit praesentium neque, fuga nulla, magni quas? Voluptates eaque officiis vitae earum placeat id, vero facere et enim maxime suscipit consequuntur vel dolorem beatae eius! Earum, amet explicabo in saepe aliquid atque reprehenderit, commodi corrupti nemo illum fugiat quis pariatur provident! Debitis nostrum nobis magni quibusdam dolorum deleniti quasi delectus saepe voluptatem nulla, accusantium excepturi vel, esse sint nemo consectetur expedita nesciunt illo totam ullam numquam iste eos consequuntur commodi! Ipsam, neque magni, magnam voluptas sint ea quae similique odio, quos veniam vel ipsum! Illo porro cumque et quasi recusandae ipsam impedit quos harum beatae, quibusdam obcaecati ut sequi itaque minima deleniti rem exercitationem? Quasi autem quia voluptatum beatae nisi, dicta doloremque molestiae atque ad unde a minima ducimus blanditiis hic, eius fugiat quas pariatur reiciendis excepturi cum accusantium ipsa impedit, officiis laudantium! Libero itaque a, doloribus iure id temporibus facere tenetur saepe atque hic quisquam nihil maiores rerum perspiciatis quia dolorum animi delectus, velit consectetur modi in aperiam fugiat molestias? Doloribus, repellendus ullam, perferendis voluptates dolor quidem provident beatae exercitationem totam quos mollitia accusamus incidunt nostrum culpa est. Qui dolore voluptatibus aut magni exercitationem similique dolorem voluptas sint nobis vero repudiandae fuga saepe explicabo distinctio perferendis pariatur, incidunt modi esse commodi ullam minima amet iure. Amet eum itaque fugit, aspernatur porro eligendi. Culpa dignissimos non nam suscipit voluptatem! Temporibus fugit illo cum perferendis, numquam quasi atque nemo deleniti quod perspiciatis, ratione suscipit sit nobis delectus enim deserunt excepturi ullam iste. Reiciendis rem hic nam aut, consequatur tempore libero nobis dolores est voluptatum dolorem nulla mollitia ipsum laborum modi eaque voluptatibus minima tenetur nostrum. Fuga neque ullam expedita eaque assumenda at praesentium eveniet odit, dignissimos cum, quae animi voluptatum asperiores recusandae sit, iure facilis rerum incidunt suscipit nostrum! Ipsa, illum voluptatum! Cupiditate, illum. Est odit soluta assumenda nobis quae sit fuga nulla aspernatur pariatur perferendis illo nesciunt aliquam veniam dolorum officiis alias nisi fugiat facilis, repellendus consequatur facere eos molestiae? Ratione, commodi, ullam, pariatur repellat minus quo repellendus laudantium possimus nulla laborum impedit ipsum eaque. Magnam itaque, modi qui molestias eaque non molestiae corrupti illum dolor! Dolorem doloremque necessitatibus dignissimos consectetur molestiae! Officiis libero tempore maxime dignissimos magni reprehenderit illo enim natus cum, corporis repudiandae est soluta doloremque voluptas fugit iusto? Quis, consectetur? Nihil ipsa molestiae sunt saepe ab expedita totam non accusamus consequatur sequi. Doloribus eveniet odio, ab laudantium quasi doloremque, dolorem, deserunt eum debitis iusto laboriosam! Ipsam.</p>
+
+                </div>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+
+    </script>
+    <!--  -->
+    <script src="./jQuery/js/jquery-1.11.3.min.js"></script>
+</body>
+
+</html>
