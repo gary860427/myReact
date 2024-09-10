@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./jQuery/css/textslider.css">
+    <style>
+        .slideText {
+            height: 1.5rem;
+            /*1rem 大約為 16px*/
+        }
+    </style>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 查看react, reactDOM成員
+        const { useEffect } = React;
+
+        // jQuery環境簡寫
+
+
+        // 步驟三：建立 React 元件
+        // 元件自首要大寫，而且有回傳值return
+        function App() {
+
+            useEffect(() => {
+                // 撰寫jQuery環境正常寫法
+                // $(document).ready(function(){});
+                $(function () {
+                    $('.slideText').textslider({
+                        direction: 'scrollUp', // 捲動方向: scrollUp向上, scrollDown向下
+                        scrollNum: 1, // 一次捲動幾個<li>
+                        scrollSpeed: 800, // 捲動速度(ms)
+                        pause: 500  // 停頓時間(ms)
+                    });
+                });
+            }, []);
+
+            return (
+                <div>
+                    <h1>文字輪播</h1>
+                    <div class="slideText">
+                        <ul>
+                            <li>News1</li>
+                            <li>News2</li>
+                            <li>News3</li>
+                            <li>News4</li>
+                            <li>News5</li>
+                            <li>News6</li>
+                            <li>News7</li>
+                            <li>News8</li>
+                            <li>News9</li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+
+    </script>
+    <!--  -->
+    <script src="./jQuery/js/jquery-1.11.3.min.js"></script>
+    <!-- 滑動主程式 -->
+    <script src="./jQuery/js/jquery.textslider.js"></script>
+</body>
+
+</html>
