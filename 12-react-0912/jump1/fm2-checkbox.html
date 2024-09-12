@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>環境安裝</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="../javascripts/vendor.js"></script>
+</head>
+
+<body>
+    <!-- 步驟二：載入root元素 -->
+    <div id="root"></div>
+
+    <!-- 使用JSX，type類型為 "text/babel" -->
+    <script type="text/babel">
+        // 步驟三：建立 React 元件
+        const { useState } = React;
+
+
+
+        // JSX寫法
+        function App() {
+            // #1 核取方塊checkBox
+            const [check, setCheck] = useState(false);
+
+            // #2 多個核取方塊checkBox
+            const [chkList, setChkList] = useState([]);
+
+            // 建立一個函式處理是否被選取
+            const handleCheckList = (e) => {
+                // console.log(e.target.value);
+
+                // 檢查是否被勾選
+                if (e.target.checked) {
+                    // 是 =>顯示
+                    setChkList([...chkList, e.target.value]);
+                } else {
+                    // 不是=>刪除
+                    setChkList(chkList.filter((item) => item !== e.target.value));
+                }
+
+                
+            }
+            return (
+                <div>
+                    {/*#1 核取方塊checkBox*/}
+                    <label htmlFor="isCheck">確認狀態</label>
+                    <input type="checkbox" id="isCheck"
+                        value={check}
+                        onChange={(e) => {
+                            // console.dir(e);
+                            setCheck(e.target.checked);
+                        }}
+                    />{check.toString()}
+                    <hr />
+                    {/*#2 多個核取方塊checkBox*/}
+
+                    <label htmlFor="checkList1">冰美式</label>
+                    <input type="checkbox" id="checkList1" value="冰美式" name="drink" onChange={handleCheckList} />
+                    <label htmlFor="checkList1">冰拿鐵</label>
+                    <input type="checkbox" id="checkList2" value="冰拿鐵" name="drink" onChange={handleCheckList} />
+                    <label htmlFor="checkList1">冰其淋</label>
+                    <input type="checkbox" id="checkList3" value="冰其淋" name="drink" onChange={handleCheckList} />
+                    <br />
+                    被選取飲料:{chkList}
+
+                </div>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+
+    </script>
+
+
+    <link rel="stylesheet" href="../stylesheets/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</body>
+
+</html>
